@@ -1,0 +1,49 @@
+services:
+  daanvanberkel_openid_connect.openid_settings:
+    public: false
+    class: Daanvanberkel\OpenidConnectBundle\DTO\OpenidSettings
+    arguments:
+      $openIdConfigurationUrl: ''
+      $clientId: ''
+      $clientSecret: ''
+      $redirectUri: ''
+      $scopes: ''
+      $openIdConfigurationTtl: 0
+      $audience: ''
+
+  daanvanberkel_openid_connect.openid_session_manager:
+    public: false
+    class: Daanvanberkel\OpenidConnectBundle\OpenidSessionManager
+    arguments:
+      $requestStack: '@Symfony\Component\HttpFoundation\RequestStack'
+
+  daanvanberkel_openid_connect.openid_configuration_service:
+    public: false
+    class: Daanvanberkel\OpenidConnectBundle\OpenidConfigurationService
+    arguments:
+      $settings: '@daanvanberkel_openid_connect.openid_settings'
+      $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+      $cache: '@Symfony\Contracts\Cache\CacheInterface'
+      $serializer: '@Symfony\Component\Serializer\SerializerInterface'
+
+  daanvanberkel_openid_connect.openid_jwks_service:
+    public: false
+    class: Daanvanberkel\OpenidConnectBundle\OpenidJwksService
+    arguments:
+      $configurationService: '@daanvanberkel_openid_connect.openid_configuration_service'
+      $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+      $cache: '@Symfony\Contracts\Cache\CacheInterface'
+
+  daanvanberkel_openid_connect.openid_client:
+    public: true
+    class: Daanvanberkel\OpenidConnectBundle\OpenidClient
+    arguments:
+      $configurationService: '@daanvanberkel_openid_connect.openid_configuration_service'
+      $sessionManager: '@daanvanberkel_openid_connect.openid_session_manager'
+      $settings: '@daanvanberkel_openid_connect.openid_settings'
+      $openidJwksService: '@daanvanberkel_openid_connect.openid_jwks_service'
+      $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+      $serializer: '@Symfony\Component\Serializer\SerializerInterface'
+      $denormalizer: '@Symfony\Component\Serializer\Normalizer\DenormalizerInterface'
+
+  Daanvanberkel\OpenidConnectBundle\OpenidClient: '@daanvanberkel_openid_connect.openid_client'

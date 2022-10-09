@@ -1,0 +1,42 @@
+{
+    "name": "daanvanberkel/openid-connect-bundle",
+    "description": "OpenID Connect Bundle for Symfony",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Daanvanberkel\\OpenidConnectBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daan van Berkel",
+            "email": "info@daanvanberkel.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "~8.1.0",
+        "ext-bcmath": "*",
+        "ext-gmp": "*",
+        "symfony/cache": "^6.1",
+        "symfony/framework-bundle": "^6.1",
+        "symfony/http-client": "^6.1",
+        "symfony/http-foundation": "^6.1",
+        "symfony/serializer": "^6.1",
+        "symfony/uid": "^6.1",
+        "web-token/jwt-checker": "^3.1",
+        "web-token/jwt-core": "^3.1",
+        "web-token/jwt-signature": "^3.1",
+        "web-token/jwt-signature-algorithm-rsa": "^3.1"
+    },
+    "require-dev": {
+        "isaac/php-code-sniffer-standard": "^28.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    }
+}

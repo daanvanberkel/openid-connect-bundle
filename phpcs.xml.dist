@@ -8,17 +8,17 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <rule ref="ISAAC"/>
+    <rule ref="IO"/>
 
-    <rule ref="ISAAC.Classes.MethodPerClassLimit.MethodPerClassLimit">
+    <rule ref="IO.Classes.MethodPerClassLimit.MethodPerClassLimit">
         <exclude-pattern>src/DTO</exclude-pattern>
     </rule>
 
-    <rule ref="ISAAC.Classes.PropertyPerClassLimit.PropertyPerClassLimit">
+    <rule ref="IO.Classes.PropertyPerClassLimit.PropertyPerClassLimit">
         <exclude-pattern>src/DTO</exclude-pattern>
     </rule>
 
     <file>src/</file>
 
-    <config name="testVersion" value="8.1"/>
+    <config name="testVersion" value="8.3"/>
 </ruleset>
